@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 const PORT = process.env.PORT || 3000;
 const bikeRoute = require("./routes/bikesRoute");
+
 // connect database
 connectDB();
 
