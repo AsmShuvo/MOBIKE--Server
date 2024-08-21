@@ -2,11 +2,11 @@ const { createBike, getBikes } = require("../services/bike.services");
 
 const addBike = async (req, res) => {
   try {
-    const bike = await createBike(req.body); // Removed redundant .save()
+    const bike = await createBike(req.body);
     res.status(200).json({
       status: "success",
       message: "Bike inserted Successfully",
-      data: bike, // Return the inserted bike data
+      data: bike,
     });
   } catch (error) {
     res.status(400).json({
@@ -19,10 +19,10 @@ const addBike = async (req, res) => {
 
 const showBikes = async (req, res) => {
   try {
-    const bikes = await getBikes(); // Added 'await'
+    const bikes = await getBikes(); 
     res.status(200).json({
       status: "success",
-      data: bikes, // Send the bikes data as response
+      data: bikes, 
     });
   } catch (error) {
     res.status(400).json({
