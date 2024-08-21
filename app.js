@@ -11,6 +11,7 @@ app.use(morgan("dev"));
 const PORT = process.env.PORT || 3000;
 const bikeRoute = require("./routes/bikesRoute");
 const blogRoute = require("./routes/blogsRoute");
+const userRoute = require("./routes/userRoute");
 
 // connect database
 connectDB();
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 
 app.use("/bikes", bikeRoute);
 app.use("/blogs", blogRoute);
+app.use("/users", userRoute);
 
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);
