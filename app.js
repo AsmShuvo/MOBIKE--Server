@@ -14,6 +14,7 @@ const bikeRoute = require("./routes/bikesRoute");
 const blogRoute = require("./routes/blogsRoute");
 const userRoute = require("./routes/userRoute");
 const cartRoute = require("./routes/cartRoute");
+const reviewRoute = require("./routes/reviewRoute");
 
 // connect database
 connectDB();
@@ -21,11 +22,12 @@ connectDB();
 app.get("/", (req, res) => {
   res.send("Mobike server");
 });
-
+// routes
 app.use("/bikes", bikeRoute);
 app.use("/blogs", blogRoute);
 app.use("/users", userRoute);
 app.use("/cart", cartRoute);
+app.use("/reviews", reviewRoute);
 
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);

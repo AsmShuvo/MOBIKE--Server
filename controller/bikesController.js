@@ -1,4 +1,4 @@
-const { createBike, getBikes } = require("../services/bike.services");
+const { createBike, getBikes, getBikesById } = require("../services/bike.services");
 
 const addBike = async (req, res) => {
   try {
@@ -32,5 +32,29 @@ const showBikes = async (req, res) => {
     });
   }
 };
+const showBikesById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const bike = await getBikesById(id); 
 
-module.exports = { addBike, showBikes };
+    if (!bike) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Bike not found",
+      });
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: bike,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      message: "Error showing bike",
+      error: error.message,
+    });
+  }
+};
+
+module.exports = { addBike, showBikes, showBikesById };

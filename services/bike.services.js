@@ -9,3 +9,8 @@ exports.getBikes = async () => {
   const bikes = await bikeModel.find();
   return bikes;
 };
+
+exports.getBikesById = async (id) => {
+  const bike = await bikeModel.findById(id);
+  return bike;
+};
