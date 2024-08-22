@@ -1,4 +1,8 @@
-const { createCart, getCart } = require("../services/cart.services");
+const {
+  createCart,
+  getCart,
+  deleteItemFromCartByIdEmail,
+} = require("../services/cart.services");
 
 const addBikeToCart = async (req, res) => {
   try {
@@ -22,7 +26,7 @@ const showBikesFromCart = async (req, res) => {
     const { email } = req.params;
     const cartItem = await getCart(email);
     console.log("#", cartItem);
-    if (cartItem.length==0) {
+    if (cartItem.length == 0) {
       return res.status(400).json({
         message: "No Bikes Found On users cart",
       });
@@ -40,4 +44,22 @@ const showBikesFromCart = async (req, res) => {
   }
 };
 
-module.exports = { addBikeToCart, showBikesFromCart };
+const deleteCartItem = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { email } = req.params;
+    console.log("id: ", id);
+    console.log("email: ", email);
+    const result = await deleteItemFromCartByIdEmail(id, email);
+    console.log(result);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      message: "Error deleting item",
+      error: error.message,
+    });
+  }
+};
+
+module.exports = { addBikeToCart, showBikesFromCart, deleteCartItem };

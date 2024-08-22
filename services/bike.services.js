@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const bikeModel = require("../model/bikeModel");
 
 exports.createBike = async (data) => {
@@ -13,4 +14,16 @@ exports.getBikes = async () => {
 exports.getBikesById = async (id) => {
   const bike = await bikeModel.findById(id);
   return bike;
+};
+
+exports.deleteBikeById = async (id) => { 
+  const result = await bikeModel.deleteOne({ _id: new mongoose.Types.ObjectId(id) });
+  
+  if (result.deletedCount === 0) {
+    console.log("No document found with the provided id");
+  } else {
+    console.log("Document deleted successfully");
+  }
+  
+  return result;
 };
