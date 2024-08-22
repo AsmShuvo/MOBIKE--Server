@@ -15,6 +15,8 @@ const blogRoute = require("./routes/blogsRoute");
 const userRoute = require("./routes/userRoute");
 const cartRoute = require("./routes/cartRoute");
 const reviewRoute = require("./routes/reviewRoute");
+const paymentRoute = require("./routes/paymentRoute");
+const paymentIntentRoute = require("./routes/paymentIntentRoute");
 
 // connect database
 connectDB();
@@ -28,6 +30,8 @@ app.use("/blogs", blogRoute);
 app.use("/users", userRoute);
 app.use("/cart", cartRoute);
 app.use("/reviews", reviewRoute);
+app.use("/payment", paymentRoute);
+app.use("/create-payment-intent", paymentIntentRoute);
 
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);

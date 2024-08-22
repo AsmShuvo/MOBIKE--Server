@@ -29,4 +29,4 @@ const paymentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Bike", paymentSchema);
+module.exports = mongoose.model("Payments", paymentSchema);
