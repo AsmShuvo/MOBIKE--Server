@@ -5,7 +5,7 @@ exports.createCart = async (data) => {
   return result;
 };
 
-exports.getCart = async () => {
-  const bikes = await cartModel.find();
+exports.getCart = async (email) => {
+  const bikes = await cartModel.find({ email: email });
   return bikes;
 };

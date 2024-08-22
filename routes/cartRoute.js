@@ -6,6 +6,6 @@ const {
 const router = express.Router();
 
 router.post("/", addBikeToCart);
-router.get("/", showBikesFromCart);
+router.get("/:email", showBikesFromCart);
 
 module.exports = router;

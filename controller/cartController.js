@@ -19,10 +19,17 @@ const addBikeToCart = async (req, res) => {
 
 const showBikesFromCart = async (req, res) => {
   try {
-    const bikes = await getCart();
+    const { email } = req.params;
+    const cartItem = await getCart(email);
+    console.log("#", cartItem);
+    if (cartItem.length==0) {
+      return res.status(400).json({
+        message: "No Bikes Found On users cart",
+      });
+    }
     res.status(200).json({
-      status: "success",
-      data: bikes,
+      status: "successfully found cart",
+      data: cartItem,
     });
   } catch (error) {
     res.status(400).json({
