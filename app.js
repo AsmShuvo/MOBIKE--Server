@@ -17,6 +17,7 @@ const cartRoute = require("./routes/cartRoute");
 const reviewRoute = require("./routes/reviewRoute");
 const paymentRoute = require("./routes/paymentRoute");
 const paymentIntentRoute = require("./routes/paymentIntentRoute");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // connect database
 connectDB();
@@ -30,8 +31,9 @@ app.use("/blogs", blogRoute);
 app.use("/users", userRoute);
 app.use("/cart", cartRoute);
 app.use("/reviews", reviewRoute);
-app.use("/payment", paymentRoute);
+app.use("/payments", paymentRoute);
 app.use("/create-payment-intent", paymentIntentRoute);
+
 
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);

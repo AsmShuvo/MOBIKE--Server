@@ -8,11 +8,7 @@ const {
 const addBike = async (req, res) => {
   try {
     const bike = await createBike(req.body);
-    res.status(200).json({
-      status: "success",
-      message: "Bike inserted Successfully",
-      data: bike,
-    });
+    res.status(200).json(bike);
   } catch (error) {
     res.status(400).json({
       status: "fail",
@@ -25,10 +21,7 @@ const addBike = async (req, res) => {
 const showBikes = async (req, res) => {
   try {
     const bikes = await getBikes();
-    res.status(200).json({
-      status: "success",
-      data: bikes,
-    });
+    res.status(200).json(bikes);
   } catch (error) {
     res.status(400).json({
       status: "fail",
@@ -49,10 +42,7 @@ const showBikesById = async (req, res) => {
       });
     }
 
-    res.status(200).json({
-      status: "success",
-      data: bike,
-    });
+    res.status(200).json(bike);
   } catch (error) {
     res.status(400).json({
       status: "fail",

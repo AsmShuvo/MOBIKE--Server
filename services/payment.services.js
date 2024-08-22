@@ -1,5 +1,11 @@
-const getAllPayments = async (req, res) => {
+const paymentModel = require("../model/paymentModel");
 
+exports.getAllPayment = async () => {
+  const paymentsInfo = await paymentModel.find();
+  return paymentsInfo;
 };
 
-module.exports = getAllPayments;
+exports.getPaymentByEmail = async (email) => {
+  const paymentInfo = await paymentModel.find({ email: email });
+  return paymentInfo;
+};

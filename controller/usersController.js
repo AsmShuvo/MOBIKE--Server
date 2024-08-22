@@ -1,13 +1,9 @@
-const { createUser } = require("../services/user.services");
+const { createUser, getUser } = require("../services/user.services");
 
 const addUser = async (req, res) => {
   try {
     const user = await createUser(req.body);
-    res.status(200).json({
-      status: "success",
-      message: "user inserted Successfully",
-      data: user,
-    });
+    res.status(200).json(user);
   } catch (error) {
     res.status(400).json({
       status: "fail",
@@ -19,11 +15,10 @@ const addUser = async (req, res) => {
 
 const showUser = async (req, res) => {
   try {
-    const users = await getBlogs(req.body);
-    res.status(200).json({
-      status: "success",
-      data: users,
-    });
+    console.log("get users called");
+    const users = await getUser(req.body);
+    console.log("Users:", users);
+    res.status(200).json(users);
   } catch (error) {
     res.status(400).json({
       status: "fail",
